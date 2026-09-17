@@ -154,12 +154,32 @@ SELECT name , gpa  FROM profiles LIMIT 2;
 SELECT name , address , email FROM profiles LIMIT 6;
 """
 
-#Table updating
+#Table updating ,, Deleting 
 """
 UPADTE table SET col = "...." --> update all rows 
 UPADTE table SET age = age+1 "...." --> update all rows 
 UPADTE table SET col = "...." WHERE id = ... --> update row that has this  id
 
+DELETE  FROM TABLE; -->delete everything in this table
+DELETE  FROM TABLE WHERE id in (1,2,3,....); -->delete with where
+DELETE  FROM TABLE ; -->delete everything in this table
+UPDATE  table SET col =NULL --> delete every thing in specific column 
 
-
+(Watch out !! you can't delete or set something have CONSTRAINTS: NOT NULL)
 """
+
+#WHERE
+"""
+SELECT * FROM users WHERE age = 25;
+SELECT * FROM users WHERE age != 25;            -- أو <>
+SELECT * FROM users WHERE age > 18 AND age < 30;
+SELECT * FROM users WHERE name = 'Ahmed' OR name = 'Sara';
+SELECT * FROM users WHERE age BETWEEN 20 AND 30;
+SELECT * FROM users WHERE name IN ('Ahmed', 'Sara', 'Omar');
+SELECT * FROM users WHERE name LIKE 'A%';          -- يبدأ بحرف A
+SELECT * FROM users WHERE name LIKE '%med';        -- ينتهي بـ med
+SELECT * FROM users WHERE name LIKE '%ah%';        -- يحتوي ah في أي مكان
+SELECT * FROM users WHERE email IS NULL;           -- القيم الفارغة
+SELECT * FROM users WHERE email IS NOT NULL;
+"""
+

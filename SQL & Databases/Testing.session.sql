@@ -128,4 +128,45 @@ UPDATE users SET name = "Rodaina momo khaled" WHERE id = 9;
 
 SELECT * FROM users LIMIT 10;
 
-UPDATE accounts SET type = ""
+UPDATE accounts SET type = "Debting_Account" WHERE type = "Loan_Account";
+
+SELECT * FROM accounts;
+
+CREATE TABLE IF NOT EXISTS fake (
+id INTEGER  PRIMARY KEY AUTOINCREMENT,
+name VARCHAR (50)  NOT NULL ,
+email VARCHAR (200) NOT NULL,
+national_number VARCHAR (14)  NOT NULL UNIQUE, 
+accounts_number INTEGER , --not correct
+age INTEGER NOT NULL 
+);
+
+INSERT INTO fake (name, email, national_number, accounts_number, age) VALUES  
+("Ahmed Mahmoud Ibrahim", "ahmed.m@gmail.com", "29912150102345", 2, 26),
+("Sara Abdullah Hassan", "sara.hassan@yahoo.com", "30205100201234", 3, 24),
+("Mohamed Tareq El-Sherif", "m.tareq@outlook.com", "28509010304567", 1, 41);
+
+DELETE FROM fake; 
+DROP TABLE IF EXISTS fake;
+
+--18 Ac , 10 use
+DELETE FROM users WHERE id in (2,3,4);
+SELECT COUNT(*) FROM accounts;
+
+PRAGMA foreign_keys = ON;
+DELETE FROM users WHERE id = 5;
+
+DELETE FROM accounts WHERE user_id in (2,3,4);
+
+UPDATE companies SET money = money + 10000;
+
+SELECT * FROM users WHERE age BETWEEN 18 AND 30;
+SELECT * FROM users WHERE age >= 30 OR age <=18;
+
+SELECT * FROM accounts WHERE id in (1,12,10,16);
+SELECT * FROM accounts WHERE money in (22000 , 32000 , 30000 , 10000);
+
+SELECT * FROM users WHERE name LIKE "M%";
+SELECT * FROM users WHERE name LIKE "%a%";
+SELECT * FROM users WHERE name LIKE "%y";
+
