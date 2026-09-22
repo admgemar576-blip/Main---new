@@ -4,7 +4,7 @@ from telegram import Update ,InlineKeyboardButton , InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, ContextTypes , CallbackQueryHandler,ConversationHandler ,MessageHandler ,filters
 import re
 
-DB_Path = "Bots/bot_database.db"
+DB_Path = "Bots/bot_todo_database.db"
 Token = "8697463306:AAHd5wJDu9E7vJFEs5qMn9XXw60XdXnjUBs"
 WAITING_FOR_TASK ,WAITING_FOR_REMOVE = range(2)
 
@@ -82,8 +82,7 @@ async def start_add_task(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def receive_task_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
     task_name = update.message.text 
     id = update.message.from_user.id
-    date = update.message.date
-    
+    date = update.message.date.isoformat()
     try:
         await save_task(id,task_name,date)
         print(f"Saved Successfully :{id}")
@@ -197,7 +196,6 @@ async def main ():
     
     handel(addremove_handler)
     handel(CommandHandler ("start" , start))
-    handel(CommandHandler ("start" , start))
     handel(CallbackQueryHandler(getlist,"btn_list"))
     
     
@@ -207,4 +205,7 @@ async def main ():
     await asyncio.Event().wait()
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    try:
+        asyncio.run(main())
+    except (KeyboardInterrupt, SystemExit):
+        print("Bot was stopped")
