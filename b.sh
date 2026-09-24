@@ -1,1 +1,1 @@
-echo "Mennnor"
+sudo -i -u postgres psql
